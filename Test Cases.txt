@@ -1,0 +1,205 @@
+
+Me:
+
+convertIntegerToRoman(1) => "I"
+convertIntegerToRoman("I") => Error
+converIntegerToRoman("?") => Error
+convertIntegerToRoman(3999) => "MMMCMXCIX"
+convertIntegerToRoman(1444) => "MCDXLIV"
+convertIntegerToRoman(3333) => "MMMCCCXXXIII"
+convertIntegerToRoman(4000) => Error
+convertIntegerToRoman(0) => Error
+convertIntegerToRoman(6) => "VI"
+convertIntegerToRoman(77) => "LXXVII"
+convertIntegerToRoman(828) => "DCCCXXVIII"
+convertIntegerToRoman(    2) => "II"
+convertIntegerToRoman(-1) => Error
+convertIntegerToRoman(7"V") => Error
+convertIntegerToRoman() => Error
+convertIntegertoRoman("	") => Error 
+
+convertRomanToInteger("I") => 1
+convertRomanToInteger(1) => Error
+convertRomanToInteger(7"V") => Error
+convertRomanToInteger() => Error
+convertRomanToInteger(" ") => Error
+convertRomanToInteger("IIII") => Error
+convertRomanToInteger("T") => Error
+convertRomanToInteger("MMMCMXCIX") => 3999
+convertRomanToInteger("MMCMXCIX") => 2999
+convertRomanToInteger("       II") => 2
+convertRomanToInteger("VV") => Error
+convertRomanToInteger("VI") => 6
+convertRomanToInteger("LXXVII") => 77
+convertRomanToInteger("DCCCXXVIII") => 828
+convertRomanToInteger("IV") => 4
+convertRomanToInteger("XM") => Error
+convertRomanToInteger("i") => I 
+convertRomanToInteger("Í") => I 
+convertRomanToInteger("í") => I
+
+IA
+
+ROMAN TO INTEGER (VALID INPUTS)
+
+ID	Description	Input	Expected Output
+R2I-01	Smallest valid Roman	I	1
+R2I-02	Single symbol - V	V	5
+R2I-03	Single symbol - X	X	10
+R2I-04	Single symbol - L	L	50
+R2I-05	Single symbol - C	C	100
+R2I-06	Single symbol - D	D	500
+R2I-07	Single symbol - M	M	1000
+R2I-08	Simple addition - II	2	
+R2I-09	Simple addition - III	3	
+R2I-10	Simple addition - VI	6	
+R2I-11	Simple addition - XI	11	
+R2I-12	Simple addition - XV	15	
+R2I-13	Simple addition - XX	20	
+R2I-14	Simple addition - MD	1500	
+R2I-15	Simple addition - MMD	2500	
+R2I-16	Subtraction - IV	4	
+R2I-17	Subtraction - IX	9	
+R2I-18	Subtraction - XL	40	
+R2I-19	Subtraction - XC	90	
+R2I-20	Subtraction - CD	400	
+R2I-21	Subtraction - CM	900	
+R2I-22	Complex standard - XLIX	49	
+R2I-23	Complex standard - XCIX	99	
+R2I-24	Complex standard - CDXLIV	444	
+R2I-25	Complex standard - DCCCLXXXVIII	888	
+R2I-26	Complex standard - CMXCIX	999	
+R2I-27	Complex standard - MCMXLVIII	1948	
+R2I-28	Complex standard - MCMXCIX	1999	
+R2I-29	Complex standard - MMXXIV	2024	
+R2I-30	Complex standard - MMXXV	2025	
+R2I-31	Complex standard - MMMCMXCIX	3999	
+R2I-32	Lowercase input - xiv	14	
+R2I-33	Mixed case - MxCmXlIv	1944	
+R2I-34	With spaces - " XIV "	14	
+R2I-35	Year 1776 (US independence) - MDCCLXXVI	1776	
+R2I-36	Year 1212 - MCCXII	1212 
+
+ROMAN TO INTEGER (INVALID INPUTS)
+
+ID	Description	Input	Expected Output
+R2I-37	Empty string	""	Error / NaN
+R2I-38	Whitespace only	" "	Error / NaN
+R2I-39	Invalid character - number	"123"	Error
+R2I-40	Invalid character - letter	"ABC"	Error
+R2I-41	Invalid character - special	"XIV@"	Error
+R2I-42	Invalid repetition - IIII	"IIII"	Error (should be IV)
+R2I-43	Invalid repetition - XXXX	"XXXX"	Error (should be XL)
+R2I-44	Invalid repetition - CCCC	"CCCC"	Error (should be CD)
+R2I-45	Invalid subtraction - IC (99)	"IC"	Error (should be XCIX)
+R2I-46	Invalid subtraction - IL (49)	"IL"	Error (should be XLIX)
+R2I-47	Invalid subtraction - XM (990)	"XM"	Error (should be CMXC)
+R2I-48	Invalid subtraction - VX	"VX"	Error
+R2I-49	Invalid subtraction - LC	"LC"	Error
+R2I-50	Invalid subtraction - DM	"DM"	Error
+R2I-51	Out of range (too large)	"MMMM"	Error (>3999)
+R2I-52	Out of range - MMMMCMXCIX	"MMMMCMXCIX"	Error (>3999)
+R2I-53	Wrong order - VIV	"VIV"	Error
+R2I-54	Wrong order - IXI	"IXI"	Error
+R2I-55	Single invalid - Z	"Z"	Error
+
+INTEGER TO ROMAN (VALID INPUTS)
+
+
+ID	Description	Input	Expected Output
+I2R-01	Minimum value	1	I
+I2R-02	Small numbers 2-10	2	II
+I2R-03		3	III
+I2R-04		4	IV
+I2R-05		5	V
+I2R-06		6	VI
+I2R-07		7	VII
+I2R-08		8	VIII
+I2R-09		9	IX
+I2R-10		10	X
+I2R-11	Tens - 20	20	XX
+I2R-12	Tens - 30	30	XXX
+I2R-13	Tens - 40	40	XL
+I2R-14	Tens - 50	50	L
+I2R-15	Tens - 60	60	LX
+I2R-16	Tens - 70	70	LXX
+I2R-17	Tens - 80	80	LXXX
+I2R-18	Tens - 90	90	XC
+I2R-19	Hundreds - 100	100	C
+I2R-20	Hundreds - 200	200	CC
+I2R-21	Hundreds - 300	300	CCC
+I2R-22	Hundreds - 400	400	CD
+I2R-23	Hundreds - 500	500	D
+I2R-24	Hundreds - 600	600	DC
+I2R-25	Hundreds - 700	700	DCC
+I2R-26	Hundreds - 800	800	DCCC
+I2R-27	Hundreds - 900	900	CM
+I2R-28	Thousands - 1000	1000	M
+I2R-29	Thousands - 2000	2000	MM
+I2R-30	Thousands - 3000	3000	MMM
+I2R-31	Edge - 49	49	XLIX
+I2R-32	Edge - 99	99	XCIX
+I2R-33	Edge - 444	444	CDXLIV
+I2R-34	Edge - 888	888	DCCCLXXXVIII
+I2R-35	Edge - 999	999	CMXCIX
+I2R-36	Edge - 1948	1948	MCMXLVIII
+I2R-37	Edge - 1999	1999	MCMXCIX
+I2R-38	Edge - 2024	2024	MMXXIV
+I2R-39	Edge - 3999 (max)	3999	MMMCMXCIX
+I2R-40	Year 1776	1776	MDCCLXXVI
+
+INTEGER TO ROMAN (INVALID INPUTS)
+
+
+ID	Description	Input	Expected Output
+I2R-41	Zero	0	Error
+I2R-42	Negative number	-5	Error
+I2R-43	Above maximum (4000)	4000	Error
+I2R-44	Above maximum (5000)	5000	Error
+I2R-45	Above maximum (10000)	10000	Error
+I2R-46	Decimal number	4.5	Error
+I2R-47	Decimal string	"4.5"	Error
+I2R-48	Empty string	""	Error
+I2R-49	Non-numeric text	"abc"	Error
+I2R-50	Null value	null	Error
+
+BIDIRECTIONAL CONSISTENCY (ROUND-TRIP TESTS)
+
+
+ID	Description	Original	Roman	Back to Original
+RND-01	Number 1	1	I	1
+RND-02	Number 4	4	IV	4
+RND-03	Number 9	9	IX	9
+RND-04	Number 40	40	XL	40
+RND-05	Number 90	90	XC	90
+RND-06	Number 400	400	CD	400
+RND-07	Number 900	900	CM	900
+RND-08	Number 1984	1984	MCMLXXXIV	1984
+RND-09	Number 2024	2024	MMXXIV	2024
+RND-10	Number 3999	3999	MMMCMXCIX	3999
+
+BOUNDARY & EDGE CASES
+
+
+ID	Description	Input Type	Input	Expected
+BND-01	Minimum valid integer	I2R	1	I
+BND-02	Maximum valid integer	I2R	3999	MMMCMXCIX
+BND-03	Just below minimum	I2R	0	Error
+BND-04	Just above maximum	I2R	4000	Error
+BND-05	Minimum valid Roman	R2I	I	1
+BND-06	Maximum valid Roman	R2I	MMMCMXCIX	3999
+BND-07	Roman just above max	R2I	MMMM	Error
+BND-08	Very large integer	I2R	999999	Error
+BND-09	Very large Roman string	R2I	"MMMMMMMMMMMMMMMM"	Error
+BND-10	Empty string after whitespace	R2I	" "	Error
+
+ERROR MESSAGE VERIFICATION
+
+ID	Scenario	Expected Message Contains
+ERR-01	Invalid Roman (IIII)	"invalid roman numeral"
+ERR-02	Out of range Roman (MMMM)	"invalid roman numeral"
+ERR-03	Empty Roman field	"please enter"
+ERR-04	Invalid integer (0)	"between 1 and 3999"
+ERR-05	Invalid integer (4000)	"between 1 and 3999"
+ERR-06	Decimal in integer field	"must be integer"
+ERR-07	Text in integer field	"must be integer"
