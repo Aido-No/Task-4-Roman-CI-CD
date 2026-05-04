@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    types: [opened, reopened]
+    branches: ["main"]
+    
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set-up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      - name: Install Dependencies
+        run: npm install
+      - name: Lint
+        run: npx eslint script.js
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set-up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      - name: Install Dependencies
+        run: npm install
+      - name: Create test.html
+        run: |
+          cat > test.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Roman Numeral Tests</title>
+            <link rel="stylesheet" href="node_modules/mocha/mocha.css">
+          </head>
+          <body>
+            <div id="mocha"></div>
+            <script src="node_modules/mocha/mocha.js"></script>
+            <script src="node_modules/chai/chai.js"></script>
+            <script>
+              const expect = chai.expect;
+              mocha.setup('bdd');
+            </script>
+            <script src="script.js"></script>
+            <script src="tests.js"></script>
+            <script>
+              mocha.run();
+            </script>
+          </body>
+          </html>
+          EOF
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+      - name: Run tests
+        run: npx mocha-headless-chrome -f test.html --args no-sandbox --disable-setuid-sandbox
+      - run: echo "✅ Tests completed with status ${{ job.status }}"
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - run: mkdir -p dist
+      - run: |
+          cp index.html dist/ 2>/dev/null || echo "No index.html found"
+          cp script.js dist/ 2>/dev/null || echo "No script.js found"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'dist'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
