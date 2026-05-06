@@ -52,13 +52,13 @@ describe('integerToRoman', function() {
     expect(() => integerToRoman("-1")).to.throw("The number must be between 1 and 3999.");
   });
   // Doesn't Work Beacsuse Error is Outside Function
-  /*it('should throw an error for invalid integer number because ?', function() {
+  it('should throw an error for invalid integer number because ?', function() {
     expect(() => integerToRoman('?')).to.throw('Please enter a valid integer number.');
   });
   // Doesn't Work Beacsuse Error is Outside Function
   it('should throw an error for invalid integer number because I ', function() {
     expect(() => integerToRoman('I')).to.throw('Please enter a valid integer number.');
-  });*/
+  });
 
   it('should throw an error for invalid less than 1 integer number because Empty ', function() {
     expect(() => integerToRoman('')).to.throw("The number must be between 1 and 3999.");
