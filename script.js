@@ -113,7 +113,7 @@ function handleConversion() {
   const resultDiv = document.getElementById('result');
   const errorDiv = document.getElementById('error');
    gtag('event', 'Pressed_The_Button', {
-  'Type_of_Conversion' : mode
+  'Type_of_Conversion' : mode,
   'Number_Inputted': input,  // e.g., 'EQUILATERAL'
   'timestamp': new Date().toISOString()
       });
@@ -140,7 +140,7 @@ function handleConversion() {
   } catch (error) {
     // Display any error messages encountered during conversion.
     gtag('event', 'Error_Given', {
-  'Type_of_Error' : error.message
+  'Type_of_Error' : error.message,
   'Number_Inputted': input,  // e.g., 'EQUILATERAL'
   'timestamp': new Date().toISOString()
       });
